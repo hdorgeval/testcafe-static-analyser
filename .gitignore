@@ -5,6 +5,12 @@ screenshots
 build
 lib
 
+# npm package files
+*.tgz
+build/
+package/
+coverage/
+
 # Logs
 logs
 *.log

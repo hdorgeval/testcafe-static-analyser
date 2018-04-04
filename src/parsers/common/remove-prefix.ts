@@ -12,13 +12,10 @@ export const removePrefix = (prefixes: string[]) => {
       }
       prefixes
         .map( (prefix) => {
-          // tslint:disable-next-line:no-console
-          console.log(`prefix: ${prefix} - result=${result}`);
           if (result.startsWith(prefix)) {
             result = result
                       .substring(prefix.length)
                       .trim();
-            // tslint:disable-next-line:no-console
           }
         });
 

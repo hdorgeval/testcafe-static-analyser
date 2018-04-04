@@ -12,8 +12,6 @@ export const removePostfix = (postfixes: string[]) => {
       }
       postfixes
         .map( (postfix) => {
-          // tslint:disable-next-line:no-console
-          console.log(`postfix: ${postfix} - result=${result}`);
           if (result.endsWith(postfix)) {
             result = result
                       .substring(0, result.length - postfix.length)

@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "bin": {
-    "testcafe-static-analyser": "./bin/testcafe-static-analyser"
+    "testcafe-static-analyser": "./bin/testcafe-static-analyser.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,7 +15,10 @@
     "lint": "tslint --format stylish --config tslint.json 'src/**/*.ts'",
     "analyser": "ts-node ./src/index.ts",
     "analyser:report": "rimraf reports/features & ts-node ./src/html-generator.ts",
-    "build": "npm run lint && rimraf lib && tsc "
+    "build": "npm run lint && rimraf lib && tsc ",
+    "publish-please": "publish-please",
+    "package": "npm run rimraf:package && rm -f my*.tgz && npm pack",
+    "rimraf:package": "rimraf ./package"
   },
   "repository": {
     "type": "git",
@@ -36,6 +39,7 @@
     "typescript": "2.8.1"
   },
   "devDependencies": {
+    "publish-please": "2.4.1",
     "tslint": "5.9.1"
   },
   "engines": {

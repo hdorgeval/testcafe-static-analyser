@@ -52,8 +52,6 @@ const processFixtureDeclaration = (line: string, path: string, index: number): I
     uri: path,
   };
 
-  // tslint:disable-next-line:no-console
-  console.log(`${path}:${index + 1}: Fixture ${eventArgs.name}`);
   return {
     event: busEvent.foundFixture,
     eventArgs,

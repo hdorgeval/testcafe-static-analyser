@@ -9,8 +9,6 @@ export const tagsFromFilePath = (filePath: string): ITag[] => {
           .map( (dir) => ({name: `@${dir}`, line: 0}) );
 
   const filename = getFilename(filePath);
-  // tslint:disable-next-line:no-console
-  console.log(`filename: ${filename}`);
   if (filename && filename.length > 0) {
     const words =
     `${filename}`
@@ -20,8 +18,6 @@ export const tagsFromFilePath = (filePath: string): ITag[] => {
       .replace(".ts", "")
       .replace(".spec", "")
       .split(" ");
-    // tslint:disable-next-line:no-console
-    console.log(`words: ${words}`);
 
     words
       .map( (word) => word.trim())
@@ -45,15 +41,12 @@ export const tagsFromPhrase = (phrase: string): ITag[] => {
     .map( (word) => removePunctuation(word, options.punctuations))
     .filter((word) => word.length > 2)
     .filter((word) => !isNoisyTag(word, options.noisyTags ));
-  // tslint:disable-next-line:no-console
-  console.log(`tagsFromPhrase words: ${words}`);
+
   words
     .filter((word) => isUniqueWordIn(word, words))
     .map((word) => ({name: `@${word}`, line: 0}))
     .map( (tag) => tags.push(tag));
 
-  // tslint:disable-next-line:no-console
-  console.log(`tagsFromPhrase tags: ${tags}`);
   return tags;
 };
 
@@ -64,8 +57,7 @@ export const isUniqueWordIn = (word: string, words: string[]): boolean => {
   const isUnique = words
     .filter((item) => item.toLocaleLowerCase() === word.toLocaleLowerCase())
     .length === 1;
-  // tslint:disable-next-line:no-console
-  console.log(`tisUnique: ${isUnique}`);
+
   return isUnique;
 };
 

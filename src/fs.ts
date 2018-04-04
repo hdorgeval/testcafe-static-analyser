@@ -79,8 +79,6 @@ export const getFilename = (filePath: string): string | undefined => {
   const filename = filePath
     .split(sep)
     .pop();
-  // tslint:disable-next-line:no-console
-  console.log(`path:${filePath}, filename:${filename}`);
   return filename;
 };
 

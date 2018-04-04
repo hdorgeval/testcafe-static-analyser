@@ -16,8 +16,6 @@ if (featureFiles && featureFiles.length === 0) {
   console.warn(`Check the 'sourceFiles' section in the 'testcafe-static-analyser.json' file`);
   process.exit(1);
 }
-// tslint:disable-next-line:no-console
-console.log(featureFiles);
 
 listeners
   .map((listener) => {

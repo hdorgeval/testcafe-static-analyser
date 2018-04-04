@@ -68,8 +68,6 @@ const processStepDeclaration = (line: string, path: string, index: number): IEve
     uri: `${path}:${index + 1}`,
   };
 
-  // tslint:disable-next-line:no-console
-  console.log(`${path}:${index + 1}: Test ${eventArgs.name}`);
   return {
     event: busEvent.foundTest,
     eventArgs,
