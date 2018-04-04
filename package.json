@@ -1,0 +1,44 @@
+{
+  "name": "testcafe-static-analyser",
+  "version": "0.0.1",
+  "description": "Static analyser of TestCafe test code.",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "bin": {
+    "testcafe-static-analyser": "./bin/testcafe-static-analyser"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": " tsc --listEmittedFiles",
+    "tsc:init": "tsc --init",
+    "tslint:init": "tslint --init",
+    "lint": "tslint --format stylish --config tslint.json 'src/**/*.ts'",
+    "analyser": "ts-node ./src/index.ts",
+    "analyser:report": "rimraf reports/features & ts-node ./src/html-generator.ts",
+    "build": "npm run lint && rimraf lib && tsc "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdorgeval/testcafe-static-analyser.git"
+  },
+  "author": "Henri d'Orgeval",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hdorgeval/testcafe-static-analyser/issues"
+  },
+  "homepage": "https://github.com/hdorgeval/testcafe-static-analyser#readme",
+  "dependencies": {
+    "@types/node": "9.6.1",
+    "glob-fs": "0.1.7",
+    "multiple-cucumber-html-reporter": "1.8.0",
+    "rimraf": "2.6.2",
+    "ts-node": "5.0.1",
+    "typescript": "2.8.1"
+  },
+  "devDependencies": {
+    "tslint": "5.9.1"
+  },
+  "engines": {
+    "vscode": "^1.18.0"
+  }
+}
