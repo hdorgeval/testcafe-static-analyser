@@ -1,6 +1,6 @@
 {
   "name": "testcafe-static-analyser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Static analyser of TestCafe test code.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -31,8 +31,9 @@
   },
   "homepage": "https://github.com/hdorgeval/testcafe-static-analyser#readme",
   "dependencies": {
+    "@types/micromatch": "3.1.0",
     "@types/node": "9.6.1",
-    "glob-fs": "0.1.7",
+    "micromatch": "3.1.10",
     "multiple-cucumber-html-reporter": "1.8.0",
     "rimraf": "2.6.2",
     "ts-node": "5.0.1",

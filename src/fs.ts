@@ -1,7 +1,6 @@
 import { existsSync, mkdirSync, PathLike, readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import {isMatch} from "micromatch";
 import { join, sep } from "path";
-// tslint:disable-next-line:no-var-requires
-const glob = require("glob-fs")({ gitignore: true });
 
 const isDirectory = (path: PathLike) => statSync(path).isDirectory();
 const ignoreNodeModule = (path: string) => path.indexOf("node_modules") < 0;
@@ -43,9 +42,43 @@ export const getFilesRecursivelyIn = (directoryPath: string, fileFilter?: (path:
   return files;
 };
 
+const extractRootFolderFromGlob = (globPattern: string): string => {
+  if (globPattern === null || globPattern === undefined) {
+    return "./";
+  }
+  if (globPattern
+      .trim()
+      .startsWith(sep)) {
+    return "./";
+  }
+  const hasSeparator =
+            Array.from(globPattern)
+              .filter((char) => char === sep)
+              .length
+              > 0;
+  if (hasSeparator === false) {
+    return "./";
+  }
+  const result =
+          globPattern
+            .split(sep)
+            [0];
+  if (result
+        .trim()
+        .startsWith("*")
+      ) {
+    return "./";
+  }
+  return result;
+};
+
 export const getFilesFromGlob = (globPattern: string): string[] => {
   try {
-    const files: string[] = glob.readdirSync(globPattern);
+    const filter = (path: string): boolean => {
+      return isMatch(path, globPattern);
+    };
+    const rootFolder = extractRootFolderFromGlob(globPattern);
+    const files = getFilesRecursivelyIn(rootFolder, filter);
     return files;
   } catch (error) {
     return [];

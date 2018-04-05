@@ -11,9 +11,9 @@ const featureFiles = getFilesFromGlob(options.sourceFiles);
 
 if (featureFiles && featureFiles.length === 0) {
   // tslint:disable-next-line:no-console
-  console.warn(`TestCafe Static Analyser: no file found in '${options.sourceFiles}'`);
+  console.warn(`> TestCafe Static Analyser: no file found in '${options.sourceFiles}'`);
   // tslint:disable-next-line:no-console
-  console.warn(`Check the 'sourceFiles' section in the 'testcafe-static-analyser.json' file`);
+  console.warn(`> Check the 'sourceFiles' section in the 'testcafe-static-analyser.json' file`);
   process.exit(1);
 }
 
