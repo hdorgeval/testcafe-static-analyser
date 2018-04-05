@@ -35,7 +35,10 @@ const getDirectoriesRecursivelyIn = (path: string): string[] => {
 };
 
 export const getFilesRecursivelyIn = (directoryPath: string, fileFilter?: (path: string) => boolean): string[] => {
-  const dirs = getDirectoriesRecursivelyIn(directoryPath);
+  const dirs = [directoryPath];
+  getDirectoriesRecursivelyIn(directoryPath)
+    .map( (dir) => dirs.push(dir));
+
   const files = dirs
       .map((dir) => getFilesInDirectory(dir, fileFilter))
       .reduce((a, b) => a.concat(b), []);
