@@ -7,3 +7,14 @@ export interface IEventInfo<T> {
   event: string;
   eventArgs: T;
 }
+
+export interface IRegexFilters {
+  accepts: RegExp[];
+  skips: RegExp[];
+  rejects: RegExp[];
+  keywords: RegExp[];
+}
+
+export interface IKeywordMapping {
+  [index: string]: string;
+}

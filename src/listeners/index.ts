@@ -1,10 +1,14 @@
-import { busEvent } from "../events/exposed-events";
-import { IFeatureReport, IScenario } from "../static-analyser-interface";
-import { onFoundFixture } from "./fixture-listener";
+import { featureParserEvent } from "../parsers/feature-parser";
+import { scenarioParserEvent } from "../parsers/scenario-parser";
+import { stepParserEvent } from "../parsers/step-parser";
+import { IFeatureReport, IScenario, IStep } from "../static-analyser-interface";
+import { onFoundFeature } from "./feature-listener";
 import { IListenerInfo } from "./listener-interface";
-import { onFoundTest } from "./test-listener";
+import { onFoundScenario } from "./scenario-listener";
+import { onFoundStep } from "./step-listener";
 
-export const listeners: Array<IListenerInfo<Partial<IFeatureReport| IScenario>>> = [
-  {event: busEvent.foundFixture, process: onFoundFixture},
-  {event: busEvent.foundTest, process: onFoundTest},
+export const listeners: Array<IListenerInfo<Partial<IFeatureReport| IScenario | IStep>>> = [
+  {event: featureParserEvent.foundFeature, process: onFoundFeature},
+  {event: scenarioParserEvent.foundScenario, process: onFoundScenario},
+  {event: stepParserEvent.foundStep, process: onFoundStep},
 ];

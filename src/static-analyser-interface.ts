@@ -1,6 +1,6 @@
 export interface IFeatureReport {
   description: string;
-  keyword: Keyword;
+  keyword: string;
   name: string;
   line: number;
   id: string;
@@ -8,6 +8,7 @@ export interface IFeatureReport {
   uri: string;
   elements: IScenario[];
   metadata: IMetadata[];
+  skipped: boolean;
 }
 
 export interface IMetadata {
@@ -18,7 +19,7 @@ export interface IMetadata {
 
 export interface IScenario {
   id: string;
-  keyword: Keyword;
+  keyword: string;
   line: number;
   name: string;
   tags: ITag[];
@@ -27,16 +28,18 @@ export interface IScenario {
   status: StepStatus;
   sourceLine: string;
   uri: string;
+  skipped: boolean;
 
 }
 
 export interface IStep {
-  keyword: Keyword;
+  keyword: string;
   name: string;
   result: IStepResult;
   hidden: boolean;
   match: IMatch;
   text: string;
+  tags: ITag[];
 }
 export interface IMatch {
   location: string;
@@ -55,18 +58,6 @@ export interface ITag {
   name: string;
   line: number;
 }
-export type Keyword =
-| "Feature"
-| "Scenario"
-| "Given"
-| "Before"
-| "When"
-| "Then"
-| "But"
-| "Undefined"
-| "test"
-| ">"
-;
 
 export const testcafeDefaultStep: IStep = {
   hidden: false,
@@ -79,6 +70,7 @@ export const testcafeDefaultStep: IStep = {
     duration: 0,
     status: "passed",
   },
+  tags: [],
   text: "text",
 };
 

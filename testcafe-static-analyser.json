@@ -1,16 +1,20 @@
 {
   "noisyTags": [
-    "given",
-    "when",
-    "then",
+    "able",
+    "and",
+    "async",
     "but",
-    "only",
-    "not",
     "can",
     "cannot",
-    "able",
+    "did",
+    "given",
+    "not",
+    "only",
+    "the",
+    "then",
     "with",
-    "did"
+    "when",
+    "(t)"
   ],
   "punctuations": [
     ".",
@@ -22,7 +26,7 @@
   "reportDir": "reports/static-analyser",
   "reportHeader": "TestCafe Static Analyser Report",
   "reportTempDir": "reports/temp",
-  "reportTitle": "TestCafe Starter",
-  "sourceFiles": "features/**/*.spec.ts",
+  "reportTitle": "TestCafe E2E Tests Analysis",
+  "sourceFiles": "tests/**/*.spec.ts",
   "verbose": false
 }

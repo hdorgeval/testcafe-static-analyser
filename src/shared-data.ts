@@ -5,4 +5,6 @@ let currentFeature: IFeatureReport | undefined;
 let currentScenario: IScenario | undefined;
 export const setCurrentFeature = (input: IFeatureReport) => currentFeature = input;
 export const getCurrentFeature = () => currentFeature;
-export const setCurrentScenario = (input: IScenario) => currentScenario = input;
+export const setCurrentScenario = (input: IScenario | undefined) => currentScenario = input;
+
+export const getCurrentScenario = () => currentScenario;

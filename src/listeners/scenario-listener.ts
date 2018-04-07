@@ -2,7 +2,7 @@ import { isIn } from "../parsers/common/tags-from-path";
 import { getCurrentFeature, setCurrentScenario } from "../shared-data";
 import { IFeatureReport, IScenario, IStep, testcafeDefaultStep } from "../static-analyser-interface";
 
-export const onFoundTest = (eventArgs: Partial<IScenario>) => {
+export const onFoundScenario = (eventArgs: Partial<IScenario>) => {
   const currentFeature = getCurrentFeature();
   const scenarioId = currentFeature
               ? currentFeature.elements.length + 1
@@ -10,7 +10,14 @@ export const onFoundTest = (eventArgs: Partial<IScenario>) => {
   const testStep: IStep = {
     ...testcafeDefaultStep,
     name: eventArgs.sourceLine || "undefined",
+    result: {
+      duration: 0,
+      status: eventArgs.skipped
+            ? "skipped"
+            : "passed",
+    },
     text: `<a href="#">${eventArgs.uri || ""}</a>`,
+
   };
   if (currentFeature) {
     testStep.match = {
@@ -21,9 +28,10 @@ export const onFoundTest = (eventArgs: Partial<IScenario>) => {
   const newScenarioReport: IScenario = {
     ...eventArgs,
     id: `Scenario${scenarioId}`,
-    keyword: "Scenario",
+    keyword: eventArgs.keyword || "Scenario",
     line: eventArgs.line || 0,
     name: eventArgs.name || "undefined",
+    skipped: eventArgs.skipped || false,
     sourceLine: eventArgs.sourceLine || "",
     status: eventArgs.status || "undefined",
     steps: [testStep],
@@ -31,11 +39,15 @@ export const onFoundTest = (eventArgs: Partial<IScenario>) => {
     type: eventArgs.type || "scenario",
     uri: eventArgs.uri || "",
   };
+  if (currentFeature && currentFeature.skipped) {
+    newScenarioReport.skipped = true;
+  }
   if (currentFeature) {
     aggregateScenarioTagsInToFeatureTags(newScenarioReport, currentFeature );
     currentFeature.elements.push(newScenarioReport);
     setCurrentScenario(newScenarioReport);
   }
+
 };
 
 const aggregateScenarioTagsInToFeatureTags = (scenario: IScenario, feature: IFeatureReport) => {

@@ -6,13 +6,12 @@ import { customReportFilePath, finalReportFilePath, options } from "./options";
 import { parsers } from "./parsers";
 import { features } from "./shared-data";
 import { ICustomReportData } from "./static-analyser-interface";
+  // tslint:disable:no-console
 
 const featureFiles = getFilesFromGlob(options.sourceFiles);
 
 if (featureFiles && featureFiles.length === 0) {
-  // tslint:disable-next-line:no-console
   console.warn(`> TestCafe Static Analyser: no file found in '${options.sourceFiles}'`);
-  // tslint:disable-next-line:no-console
   console.warn(`> Check the 'sourceFiles' section in the 'testcafe-static-analyser.json' file`);
   process.exit(1);
 }
@@ -36,6 +35,12 @@ featureFiles
     readAllLines(file)
       .map((line, index) => parseLineInFile(line, file, index));
   });
+
+if (features && features.length === 0) {
+  console.warn(`> TestCafe Static Analyser: no feature found in '${options.sourceFiles}'`);
+  console.warn(`> Check the 'sourceFiles' section in the 'testcafe-static-analyser.json' file`);
+  process.exit(1);
+}
 
 features
   .map((f) => f.metadata.push({name: "Scenarios", value: `${f.elements.length}`}));
