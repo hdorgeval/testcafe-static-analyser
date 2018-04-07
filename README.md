@@ -4,6 +4,8 @@
 
 Feel free to try this tool on your TestCafe tests and feel free to send a screenshot of the html report to the [issues](https://github.com/hdorgeval/testcafe-static-analyser/issues).
 
+[![npm badge](https://nodei.co/npm/testcafe-static-analyser.png)](https://npmjs.org/package/testcafe-static-analyser)
+
 ## To install TestCafe Static Analyser
 
 * run the command `npm install --save-dev testcafe-static-analyser`.
