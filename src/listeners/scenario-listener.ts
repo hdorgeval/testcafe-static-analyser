@@ -41,6 +41,8 @@ export const onFoundScenario = (eventArgs: Partial<IScenario>) => {
   };
   if (currentFeature && currentFeature.skipped) {
     newScenarioReport.skipped = true;
+    newScenarioReport.status = "skipped";
+    testStep.result.status = "skipped";
   }
   if (currentFeature) {
     aggregateScenarioTagsInToFeatureTags(newScenarioReport, currentFeature );
