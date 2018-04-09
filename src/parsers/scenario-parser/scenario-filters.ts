@@ -23,6 +23,7 @@ export const regexFilters: IRegexFilters = {
 
     ],
     keywords: [
+        /(test)\(`([^`]*)/,
         /(test)\((.*),\s/,
         /(test).only\((.*),\s/,
         /(test).skip\((.*),\s/,
