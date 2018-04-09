@@ -43,6 +43,18 @@ Feel free to try this tool on your TestCafe tests and feel free to send a screen
 ![Fixture details](media/static-reporter3.png)
 ![Fixture details](media/static-reporter4.png)
 
+## Samples
+
+### TestCafe repo
+
+* running testcafe-static-analyser on the TestCafe repo itself will produce the following report (the report has been filtered with the word `editable`):
+
+![Filtered fixtures](media/testcafe-repo.png)
+
+* clicking on the `GH-711` will produce the details of the selected fixture:
+
+![Fixture details](media/testcafe-repo-fixture-detail.png)
+
 ## The vision
 
 * Be able to have an high overview of all existing e2e TestCafe tests;
