@@ -55,6 +55,32 @@ Feel free to try this tool on your TestCafe tests and feel free to send a screen
 
 ![Fixture details](media/testcafe-repo-fixture-detail.png)
 
+### generating a gherkin like report 
+
+* the following code:
+```javascript
+test("Scenario: scenario example", async () => {
+  // Only on devci
+  code omitted for brevity
+
+  // Given I signed in the App
+  code omitted for brevity
+
+  // When I enter my name
+  code omitted for brevity
+
+  // And I enter my email
+  code omitted for brevity
+
+  // Then I can send my feedback to TestCafe team
+  code omitted for brevity
+});
+
+```
+
+will produce the following report:
+![Fixture details](media/sample1.png)
+
 ## The vision
 
 * Be able to have an high overview of all existing e2e TestCafe tests;
