@@ -3,6 +3,7 @@ import { IRegexFilters } from "../common/parser-interface";
 export const regexFilters: IRegexFilters = {
     accepts:
       [
+        /fixture\((.*)\).page/,
         /fixture\((.*)\)/,
         /fixture.skip\((.*)\)/,
         /fixture.only\((.*)\)/,

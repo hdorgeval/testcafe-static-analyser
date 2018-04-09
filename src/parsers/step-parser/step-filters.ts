@@ -9,6 +9,12 @@ export const regexFilters: IRegexFilters = {
         /and\((.*)\)/,
         /but\((.*)\)/,
         /only\((.*)\)/,
+        /\/\/\sGiven(.*)/,
+        /\/\/\sWhen(.*)/,
+        /\/\/\sThen(.*)/,
+        /\/\/\sAnd(.*)/,
+        /\/\/\sBut(.*)/,
+        /\/\/\sOnly(.*)/,
       ],
     // tslint:disable-next-line:object-literal-sort-keys
     skips:
@@ -28,6 +34,7 @@ export const regexFilters: IRegexFilters = {
     ],
     keywords: [
         /(given|when|then|and|but|only)\((.*)\)/,
+        /\/\/\s(Given|When|Then|And|But|Only)(.*)/,
     ],
 
 };

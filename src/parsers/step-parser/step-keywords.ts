@@ -2,12 +2,19 @@ import { IKeywordMapping } from "../common/parser-interface";
 import { regexFilters } from "./step-filters";
 
 export const keyword: IKeywordMapping = {
+    And: "And",
+    But: "But",
+    Given: "Given",
+    Only: "Only",
+    Then: "Then",
+    When: "When",
     and: "And",
     but: "But",
     given: "Given",
     only: "Only",
     then: "Then",
     when: "When",
+
 };
 
 export const getKeywordFrom = (line: string): string => {
