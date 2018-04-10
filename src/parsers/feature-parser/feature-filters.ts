@@ -7,17 +7,17 @@ export const regexFilters: IRegexFilters = {
         /fixture\((.*)\)/,
         /fixture.skip\((.*)\)/,
         /fixture.only\((.*)\)/,
-        /fixture\s`(.*)`/,
-        /fixture.skip\s`(.*)`/,
-        /fixture.only\s`(.*)`/,
+        /fixture[\s]*`(.*)`/,
+        /fixture.skip[\s]*`(.*)`/,
+        /fixture.only[\s]*`(.*)`/,
       ],
     // tslint:disable-next-line:object-literal-sort-keys
     skips:
     [
         /\/\/\sfixture\((.*)\)/,
         /fixture.skip\((.*)\)/,
-        /fixture.skip\s`(.*)`/,
-        /\/\/\sfixture\s`(.*)`/,
+        /fixture.skip[\s]*`(.*)`/,
+        /\/\/\sfixture[\s]*`(.*)`/,
     ],
     // tslint:disable-next-line:object-literal-sort-keys
     rejects: [
@@ -27,9 +27,9 @@ export const regexFilters: IRegexFilters = {
         /(fixture)\((.*)\)/,
         /(fixture).skip\((.*)\)/,
         /(fixture).only\((.*)\)/,
-        /(fixture)\s`(.*)`/,
-        /(fixture).only\s`(.*)`/,
-        /(fixture).skip\s`(.*)`/,
+        /(fixture)[\s]*`(.*)`/,
+        /(fixture).only[\s]*`(.*)`/,
+        /(fixture).skip[\s]*`(.*)`/,
     ],
 
 };
