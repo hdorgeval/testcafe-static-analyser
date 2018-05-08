@@ -2,7 +2,7 @@
 
 ## A tool that analyses the source code of your TestCafe tests and generates a nice and searchable html report from it.
 
-Feel free to try this tool on your TestCafe tests and feel free to send a screenshot of the html report to the [issues](https://github.com/hdorgeval/testcafe-static-analyser/issues).
+This tool allows you to show fixtures and tests in a Gherkin-like format, even if you do not use gherkin at all.
 
 [![npm badge](https://nodei.co/npm/testcafe-static-analyser.png)](https://npmjs.org/package/testcafe-static-analyser)
 
