@@ -16,6 +16,7 @@
     "when",
     "(t)"
   ],
+  "outputAsArchive": false,
   "punctuations": [
     ".",
     ":",
@@ -23,6 +24,7 @@
     ",",
     ";"
   ],
+  "reportArchiveDir": "reports",
   "reportDir": "reports/static-analyser",
   "reportHeader": "TestCafe Static Analyser Report",
   "reportTempDir": "reports/temp",

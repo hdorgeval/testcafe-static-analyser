@@ -1,6 +1,6 @@
 import { eventBus } from "./events/event-bus";
 import { getFilesFromGlob, readAllLines, writeJsonFileSync } from "./fs";
-import { generateAndOpenHtmlReport } from "./html-generator";
+import { generateAndArchive, generateAndOpenHtmlReport } from "./html-generator";
 import { listeners } from "./listeners";
 import { customReportFilePath, finalReportFilePath, options } from "./options";
 import { parsers } from "./parsers";
@@ -63,4 +63,5 @@ const customReportData: ICustomReportData = {
   title: options.reportTitle,
 };
 writeJsonFileSync(customReportData, customReportFilePath );
-generateAndOpenHtmlReport();
+
+options.outputAsArchive ? generateAndArchive() : generateAndOpenHtmlReport();
