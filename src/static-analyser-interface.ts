@@ -88,4 +88,6 @@ export interface IConfiguration {
   noisyTags: string[];
   punctuations: string[];
   verbose: boolean;
+
+  outputAsArchive?: boolean;
 }

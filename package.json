@@ -37,7 +37,8 @@
     "multiple-cucumber-html-reporter": "1.10.1",
     "rimraf": "2.6.2",
     "ts-node": "6.0.3",
-    "typescript": "2.8.3"
+    "typescript": "2.8.3",
+    "zip-folder": "1.0.0"
   },
   "devDependencies": {
     "publish-please": "2.4.1",
