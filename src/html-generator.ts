@@ -32,12 +32,13 @@ export const generateAndArchive = () => {
         displayDuration: false,
         jsonDir: options.reportDir,
         openReportInBrowser: false,
+        reportArchiveDir: options.reportArchiveDir,
         reportName: options.reportHeader,
         reportPath: options.reportDir,
     });
 
     // tslint:disable:no-console
-    zipFolder(options.reportDir, `${options.reportDir}/archive.zip`, (error: any) => {
+    zipFolder(options.reportDir, `${options.reportArchiveDir}/archive.zip`, (error: any) => {
         if (!!error) {
             console.warn(`> TestCafe Static Analyser: cannot zip folder '${options.reportDir}'`);
         }
