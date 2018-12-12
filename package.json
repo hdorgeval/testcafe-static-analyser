@@ -16,7 +16,6 @@
     "analyser": "ts-node ./src/index.ts",
     "analyser:report": "rimraf reports/features & ts-node ./src/html-generator.ts",
     "build": "npm run lint && rimraf lib && tsc ",
-    "publish-please": "publish-please",
     "package": "npm run rimraf:package && rm -f my*.tgz && npm pack",
     "rimraf:package": "rimraf ./package"
   },
@@ -41,7 +40,6 @@
     "zip-folder": "1.0.0"
   },
   "devDependencies": {
-    "publish-please": "2.4.1",
     "tslint": "5.10.0"
   },
   "engines": {
