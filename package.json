@@ -1,6 +1,6 @@
 {
   "name": "testcafe-static-analyser",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "description": "Static analyser of TestCafe test code.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -17,7 +17,8 @@
     "analyser:report": "rimraf reports/features & ts-node ./src/html-generator.ts",
     "build": "npm run lint && rimraf lib && tsc ",
     "package": "npm run rimraf:package && rm -f my*.tgz && npm pack",
-    "rimraf:package": "rimraf ./package"
+    "rimraf:package": "rimraf ./package",
+    "rimraf": "rimraf"
   },
   "repository": {
     "type": "git",
