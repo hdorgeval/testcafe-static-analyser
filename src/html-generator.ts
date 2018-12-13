@@ -3,7 +3,9 @@ import { customReportFilePath, options } from "./options";
 // tslint:disable-next-line:no-var-requires
 const report = require("multiple-cucumber-html-reporter");
 // tslint:disable-next-line:no-var-requires
-const zipFolder = require("zip-folder");
+const archiver = require("archiver");
+// tslint:disable-next-line:no-var-requires
+const fs = require("fs");
 
 export const generateAndOpenHtmlReport = () => {
     const customData = jsonFrom(customReportFilePath);
@@ -37,10 +39,12 @@ export const generateAndArchive = () => {
         reportPath: options.reportDir,
     });
 
+    const archive = archiver("zip");
+    const output = fs.createWriteStream(`${options.reportArchiveDir}/archive.zip`);
+
     // tslint:disable:no-console
-    zipFolder(options.reportDir, `${options.reportArchiveDir}/archive.zip`, (error: any) => {
-        if (!!error) {
-            console.warn(`> TestCafe Static Analyser: cannot zip folder '${options.reportDir}'`);
-        }
-    });
+    archive.on("error", () => console.warn(`> TestCafe Static Analyser: cannot zip folder '${options.reportDir}'`));
+    archive.pipe(output);
+    archive.glob(`${options.reportDir}/**/*.**`);
+    archive.finalize();
 };
