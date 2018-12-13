@@ -18,6 +18,7 @@ export const defaultOptions: IConfiguration = {
         "when",
         "(t)",
     ],
+    outputAsArchive: false,
     punctuations: [".", ":", "!", ",", ";"],
     reportDir: "reports/static-analyser",
     reportHeader: "TestCafe Static Analyser Report",

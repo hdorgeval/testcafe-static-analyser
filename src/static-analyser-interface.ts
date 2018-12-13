@@ -83,9 +83,11 @@ export interface IConfiguration {
   sourceFiles: string;
   reportHeader: string;
   reportTitle: string;
+  reportArchiveDir?: string;
   reportDir: string;
   reportTempDir: string;
   noisyTags: string[];
   punctuations: string[];
   verbose: boolean;
+  outputAsArchive?: boolean;
 }

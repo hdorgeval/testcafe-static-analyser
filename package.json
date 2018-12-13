@@ -16,7 +16,6 @@
     "analyser": "ts-node ./src/index.ts",
     "analyser:report": "rimraf reports/features & ts-node ./src/html-generator.ts",
     "build": "npm run lint && rimraf lib && tsc ",
-    "publish-please": "publish-please",
     "package": "npm run rimraf:package && rm -f my*.tgz && npm pack",
     "rimraf:package": "rimraf ./package"
   },
@@ -33,6 +32,7 @@
   "dependencies": {
     "@types/micromatch": "3.1.0",
     "@types/node": "9.6.1",
+    "archiver": "3.0.0",
     "micromatch": "3.1.10",
     "multiple-cucumber-html-reporter": "1.10.1",
     "rimraf": "2.6.2",
@@ -40,7 +40,6 @@
     "typescript": "2.8.3"
   },
   "devDependencies": {
-    "publish-please": "2.4.1",
     "tslint": "5.10.0"
   },
   "engines": {
