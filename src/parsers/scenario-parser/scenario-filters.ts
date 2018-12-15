@@ -2,12 +2,16 @@ import { IRegexFilters } from "../common/parser-interface";
 
 export const regexFilters: IRegexFilters = {
     accepts:
-      [
+    [
         /test\(`([^`]*)/,
         /test\((.*),\s/,
         /test.skip\((.*),\s/,
         /test.only\((.*),\s/,
+        /test.requestHooks\([^'`"]*\)\((.*),\s/,
+        /test.skip.requestHooks\([^'`"]*\)\((.*),\s/,
+        /test.only.requestHooks\([^'`"]*\)\((.*),\s/,
         /.beforeEach\((.*)/,
+        /^[\s]*\((.*),\s/,
       ],
     // tslint:disable-next-line:object-literal-sort-keys
     skips:
@@ -16,6 +20,7 @@ export const regexFilters: IRegexFilters = {
         /\/\/\stest\((.*),\s/,
         /test.skip\(`(.*)/,
         /test.skip\((.*),\s/,
+        /test.skip.requestHooks\([^'`"]*\)\((.*),\s/,
         /\/\/\s.beforeEach\((.*)/,
     ],
     // tslint:disable-next-line:object-literal-sort-keys
@@ -27,6 +32,10 @@ export const regexFilters: IRegexFilters = {
         /(test)\((.*),\s/,
         /(test).only\((.*),\s/,
         /(test).skip\((.*),\s/,
+        /(test).skip\([^'`"]*\)\((.*),\s/,
+        /(test).requestHooks\([^'`"]*\)\((.*),\s/,
+        /(test).skip.requestHooks\([^'`"]*\)\((.*),\s/,
+        /(test).only.requestHooks\([^'`"]*\)\((.*),\s/,
         /\.(beforeEach)\((.*)/,
     ],
 
