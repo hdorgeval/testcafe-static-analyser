@@ -3,6 +3,9 @@ import { IRegexFilters } from "../common/parser-interface";
 export const regexFilters: IRegexFilters = {
     accepts:
     [
+        /test$/,
+        /test.skip$/,
+        /test.only$/,
         /test\(`([^`]*)/,
         /test\((.*),\s/,
         /test.skip\((.*),\s/,
@@ -16,6 +19,7 @@ export const regexFilters: IRegexFilters = {
     // tslint:disable-next-line:object-literal-sort-keys
     skips:
     [
+        /test.skip$/,
         /\/\/\stest\(`(.*)/,
         /\/\/\stest\((.*),\s/,
         /test.skip\(`(.*)/,

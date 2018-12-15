@@ -61,9 +61,19 @@ export const canParse = (line: string): boolean => {
   return false;
 };
 export const parse = (line: string, path: string, index: number): IEventInfo<Partial<IScenario>> => {
+
+  if (isMultipleLinesTestSyntax(line) ) {
+    return {
+      event: parserEvent.startScenario,
+      eventArgs: {
+        skipped: isScenarioSkipped(line),
+      },
+    };
+  }
+
   const scenarioKeyword = extractTextFrom(line)
       .withFilters(regexFilters.keywords)
-      .withMapping(keywordMapping);
+      .withMapping(keywordMapping) || keywordMapping.test;
 
   let scenarioDescription = extractTextFrom(line)
       .withFilters(regexFilters.accepts)
@@ -95,3 +105,19 @@ export const parse = (line: string, path: string, index: number): IEventInfo<Par
     eventArgs,
   };
 };
+
+function isMultipleLinesTestSyntax(line: string) {
+  if (line && line.trim && line.trim() === "test" ) {
+    return true;
+  }
+
+  if (line && line.trim && line.trim() === "test.skip" ) {
+    return true;
+  }
+
+  if (line && line.trim && line.trim() === "test.only" ) {
+    return true;
+  }
+
+  return false;
+}

@@ -1,6 +1,21 @@
 import { isIn } from "../parsers/common/tags-from-path";
 import { getCurrentFeature, setCurrentScenario } from "../shared-data";
-import { IFeatureReport, IScenario, IStep, testcafeDefaultStep } from "../static-analyser-interface";
+import { IFeatureReport, IScenario, IStep, ITag, testcafeDefaultStep } from "../static-analyser-interface";
+
+export interface IScenarioContext {
+  tags: ITag[];
+  skipped?: boolean;
+}
+
+const context: IScenarioContext = {
+  skipped: undefined,
+  tags: [],
+};
+
+export const onStartScenario = (eventArgs: Partial<IScenario>)  => {
+  initialize(context);
+  context.skipped = eventArgs.skipped;
+};
 
 export const onFoundScenario = (eventArgs: Partial<IScenario>) => {
   const currentFeature = getCurrentFeature();
@@ -50,6 +65,8 @@ export const onFoundScenario = (eventArgs: Partial<IScenario>) => {
     setCurrentScenario(newScenarioReport);
   }
 
+  initialize(context);
+
 };
 
 const aggregateScenarioTagsInToFeatureTags = (scenario: IScenario, feature: IFeatureReport) => {
@@ -69,3 +86,8 @@ const aggregateScenarioTagsInToFeatureTags = (scenario: IScenario, feature: IFea
     .filter((tag) =>  !isIn(tag.name, allFeatureTags))
     .map( (tag) => feature.tags.push(tag));
 };
+
+function initialize(ctx: IScenarioContext) {
+  ctx.tags = [];
+  ctx.skipped = undefined;
+}
