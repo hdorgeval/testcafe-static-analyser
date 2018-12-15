@@ -1,6 +1,6 @@
 {
   "name": "testcafe-static-analyser",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Static analyser of TestCafe test code.",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -32,16 +32,16 @@
   "homepage": "https://github.com/hdorgeval/testcafe-static-analyser#readme",
   "dependencies": {
     "@types/micromatch": "3.1.0",
-    "@types/node": "9.6.1",
+    "@types/node": "10.12.15",
     "archiver": "3.0.0",
     "micromatch": "3.1.10",
-    "multiple-cucumber-html-reporter": "1.10.1",
+    "multiple-cucumber-html-reporter": "1.11.4",
     "rimraf": "2.6.2",
-    "ts-node": "6.0.3",
-    "typescript": "2.8.3"
+    "ts-node": "7.0.1",
+    "typescript": "3.2.2"
   },
   "devDependencies": {
-    "tslint": "5.10.0"
+    "tslint": "5.11.0"
   },
   "engines": {
     "vscode": "^1.18.0"
