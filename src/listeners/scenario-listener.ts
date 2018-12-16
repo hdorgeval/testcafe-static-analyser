@@ -17,7 +17,25 @@ export const onStartScenario = (eventArgs: Partial<IScenario>)  => {
   context.skipped = eventArgs.skipped;
 };
 
+export const onTagScenario = (eventArgs: Partial<IScenario>)  => {
+  if (eventArgs && eventArgs.tags && Array.isArray(eventArgs.tags)) {
+    context.tags.push(...eventArgs.tags);
+  }
+};
+
 export const onFoundScenario = (eventArgs: Partial<IScenario>) => {
+
+  if (context.tags && context.tags.length > 0) {
+    eventArgs.tags = eventArgs.tags
+      ? [...eventArgs.tags, ...context.tags]
+      : [...context.tags];
+  }
+
+  if (context.skipped) {
+    eventArgs.skipped = true;
+    eventArgs.status = "skipped";
+  }
+
   const currentFeature = getCurrentFeature();
   const scenarioId = currentFeature
               ? currentFeature.elements.length + 1

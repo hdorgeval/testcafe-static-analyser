@@ -12,13 +12,13 @@ export const extractTextFrom = (line: string) => {
                     if (foundFilter === undefined) {
                         console.warn(`> cannot extract text from '${line}'`);
                         console.warn(`> check regular expressions in ${filters}`);
-                        return "undefined";
+                        return undefined;
                     }
                     const matches = foundFilter.exec(line);
                     const text = matches && matches[1]
                                 ? matches[1]
-                                : "undefined";
-                    if (mapping && mapping[text]) {
+                                : undefined;
+                    if (mapping && text && mapping[text]) {
                         return mapping[text];
                     }
                     return text;

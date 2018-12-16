@@ -1,6 +1,6 @@
 import { IScenario, StepStatus } from "../../static-analyser-interface";
 import { extractTextFrom } from "../common/extract-text";
-import { IEventInfo } from "../common/parser-interface";
+import { IEventInfo, IParserContextInfo } from "../common/parser-interface";
 import { removePostfix } from "../common/remove-postfix";
 import { removePrefix } from "../common/remove-prefix";
 import { tagsFromPhrase } from "../common/tags-from-path";
@@ -51,15 +51,39 @@ const getScenarioStatus = (line: string): StepStatus => {
   return "passed";
 };
 
-export const canParse = (line: string): boolean => {
+export const updateContext = (line: string, parserContext: IParserContextInfo): void => {
+  if (isMultipleLinesTestSyntax(line) ) {
+    parserContext.currentContext = "test";
+    return;
+  }
+
+  if (isOneLineTestSyntax(line) ) {
+    parserContext.currentContext = "test";
+    return;
+  }
+
+  if (isBeforeEachSyntax(line)) {
+    parserContext.currentContext = "test";
+    return;
+  }
+};
+
+export const canParse = (line: string, parserContext: IParserContextInfo): boolean => {
+  if (parserContext.currentContext !== "test") {
+    return false;
+  }
+
   if (scenarioShouldBeRejected(line)) {
     return false;
   }
+
   if (scenarioShouldBeProcessed(line)) {
     return true;
   }
+
   return false;
 };
+// tslint:disable-next-line:max-line-length
 export const parse = (line: string, path: string, index: number): IEventInfo<Partial<IScenario>> => {
 
   if (isMultipleLinesTestSyntax(line) ) {
@@ -71,13 +95,25 @@ export const parse = (line: string, path: string, index: number): IEventInfo<Par
     };
   }
 
+  if (isMetaSyntax(line)) {
+    const metaDescription = extractTextFrom(line)
+      .withFilters(regexFilters.accepts)
+      .withMapping({});
+    return {
+        event: parserEvent.tagScenario,
+        eventArgs: {
+          tags: tagsFromPhrase(metaDescription || "undefined"),
+        },
+      };
+  }
+
   const scenarioKeyword = extractTextFrom(line)
       .withFilters(regexFilters.keywords)
       .withMapping(keywordMapping) || keywordMapping.test;
 
   let scenarioDescription = extractTextFrom(line)
       .withFilters(regexFilters.accepts)
-      .withMapping({});
+      .withMapping({}) || "undefined";
 
   scenarioDescription = removePrefix(["\"", "'", scenarioKeyword, ":" ])
       .from(scenarioDescription);
@@ -119,5 +155,36 @@ function isMultipleLinesTestSyntax(line: string) {
     return true;
   }
 
+  return false;
+}
+
+function isOneLineTestSyntax(line: string) {
+  if (line && line.includes("test(")) {
+    return true;
+  }
+
+  if (line && line.includes("test.only(")) {
+    return true;
+  }
+
+  if (line && line.includes("test.skip(")) {
+    return true;
+  }
+
+  return false;
+}
+
+function isBeforeEachSyntax(line: string) {
+  if (line && line.includes(".beforeEach(")) {
+    return true;
+  }
+
+  return false;
+}
+
+function isMetaSyntax(line: string) {
+  if (line && line.includes(".meta(")) {
+    return true;
+  }
   return false;
 }

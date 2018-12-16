@@ -15,6 +15,7 @@ export const regexFilters: IRegexFilters = {
         /test.only.requestHooks\([^'`"]*\)\((.*),\s/,
         /.beforeEach\((.*)/,
         /^[\s]*\((.*),\s/,
+        /.meta\((.*)\)/,
       ],
     // tslint:disable-next-line:object-literal-sort-keys
     skips:
@@ -41,6 +42,7 @@ export const regexFilters: IRegexFilters = {
         /(test).skip.requestHooks\([^'`"]*\)\((.*),\s/,
         /(test).only.requestHooks\([^'`"]*\)\((.*),\s/,
         /\.(beforeEach)\((.*)/,
+        /.(meta)\((.*)\)/,
     ],
 
 };

@@ -1,5 +1,5 @@
 import { IStep, StepStatus } from "../../static-analyser-interface";
-import { IEventInfo } from "../common/parser-interface";
+import { IEventInfo, IParserContextInfo } from "../common/parser-interface";
 import { removePostfix } from "../common/remove-postfix";
 import { removePrefix } from "../common/remove-prefix";
 import { tagsFromPhrase } from "../common/tags-from-path";
@@ -48,6 +48,11 @@ const getStepStatus = (line: string): StepStatus => {
     return "skipped";
   }
   return "passed";
+};
+
+// tslint:disable-next-line:variable-name
+export const updateContext = (_line: string, _parserContext: IParserContextInfo): void => {
+  // do not change parser context
 };
 
 export const canParse = (line: string): boolean => {

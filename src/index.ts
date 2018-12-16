@@ -4,6 +4,7 @@ import { generateAndArchive, generateAndOpenHtmlReport } from "./html-generator"
 import { listeners } from "./listeners";
 import { customReportFilePath, finalReportFilePath, options } from "./options";
 import { parsers } from "./parsers";
+import { IParserContextInfo } from "./parsers/common/parser-interface";
 import { features } from "./shared-data";
 import { ICustomReportData } from "./static-analyser-interface";
   // tslint:disable:no-console
@@ -22,10 +23,14 @@ listeners
       .register(listener.process)
       .forEvent(listener.event);
   });
+const parserContext: IParserContextInfo = {
+  currentContext: "fixture",
+};
 
 const parseLineInFile = (line: string, path: string, index: number) => {
   parsers
-    .filter((p) => p.canParse(line))
+    .map((p) => {p.updateContext(line, parserContext); return p; })
+    .filter((p) => p.canParse(line, parserContext))
     .map((p) => p.parse(line, path, index))
     .map(((eventInfo) => eventBus.send(eventInfo.event, eventInfo.eventArgs)));
 };
