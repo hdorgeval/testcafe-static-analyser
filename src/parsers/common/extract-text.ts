@@ -10,8 +10,6 @@ export const extractTextFrom = (line: string) => {
                                 .filter( (r) => r.test(line))
                                 [0];
                     if (foundFilter === undefined) {
-                        console.warn(`> cannot extract text from '${line}'`);
-                        console.warn(`> check regular expressions in ${filters}`);
                         return undefined;
                     }
                     const matches = foundFilter.exec(line);
