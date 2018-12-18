@@ -28,8 +28,8 @@
 
 ## How it works
 
-* Every `fixture` is automatically tagged by analysing its folder hierarchy, its filename and its description;
-* Every `test` is automaticall tagged by analysing its description and the `.meta` declaration
+* Every `fixture` is automatically tagged by analysing its folder hierarchy, its filename, its description and the `.meta` declarations;
+* Every `test` is automatically tagged by analysing its description and the `.meta` declarations
 * Every `step` that may be present in a `test` is also automatically tagged by analysing its description;
 * every tag generated at the `step` and the `test` levels is bubbled up to the `fixture` tags;
 * The html report enables you to search/filter `fixtures` by tag.
