@@ -69,6 +69,27 @@ export const canParse = (line: string, parserContext: IParserContextInfo): boole
   return false;
 };
 export const parse = (line: string, path: string, index: number): IEventInfo<Partial<IScenario>> => {
+  if (isMultipleLinesFixtureSyntax(line) ) {
+    return {
+      event: parserEvent.startFeature,
+      eventArgs: {
+        skipped: isFeatureSkipped(line),
+      },
+    };
+  }
+
+  if (isMetaSyntax(line)) {
+    const metaDescription = extractTextFrom(line)
+      .withFilters(regexFilters.accepts)
+      .withMapping({});
+    return {
+        event: parserEvent.tagFeature,
+        eventArgs: {
+          tags: tagsFromPhrase(metaDescription || "undefined"),
+        },
+      };
+  }
+
   const featureKeyword = extractTextFrom(line)
       .withFilters(regexFilters.keywords)
       .withMapping(keywordMapping) || keywordMapping.fixture;
@@ -150,5 +171,12 @@ function isOneLineFixtureSyntax(line: string) {
     return true;
   }
 
+  return false;
+}
+
+function isMetaSyntax(line: string) {
+  if (line && line.includes(".meta(")) {
+    return true;
+  }
   return false;
 }
